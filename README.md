@@ -1,3 +1,22 @@
+# Tutoriale utile
+
+### `Documentatie Git` https://git-scm.com/docs
+### `Documentatie HTML` https://www.w3schools.com/html/default.asp
+### `Documentatie CSS` https://www.w3schools.com/css/default.asp
+### `Documentatie JavaScript` https://www.w3schools.com/js/default.asp
+### `Getting started with React` https://www.taniarascia.com/getting-started-with-react/
+### `Documentatie React` https://reactjs.org/docs/hello-world.html
+### `Documentatie Bootstrap` https://getbootstrap.com/docs/5.0/getting-started/introduction/
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
