@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      student.belongsTo(models.user, {
-
-      })
       student.belongsTo(models.specializare, {
 
       })
       student.hasMany(models.rezultat_examen, {
+
+      })
+      student.belongsTo(models.user, {
 
       })
     }
@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     telefon: DataTypes.STRING,
     data_nasterii: DataTypes.DATE,
-    id_specializare: DataTypes.INTEGER,
     grupa: DataTypes.INTEGER,
     limba: DataTypes.STRING,
     nr_catalog: DataTypes.INTEGER

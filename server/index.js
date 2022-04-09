@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-
 const db = require("./models");
+
+
+
+
 
 db.sequelize.sync({alter: true}).then(() => {
     app.listen(3001, () => {
@@ -10,3 +13,6 @@ db.sequelize.sync({alter: true}).then(() => {
 }).catch((err)   => {
     console.log(err);
 });
+
+
+

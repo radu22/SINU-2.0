@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      user.hasOne(models.student, {
+      user.hasOne(models.profesor, {
 
       })
-      user.hasOne(models.profesor, {
+      user.hasOne(models.student, {
 
       })
     }
   }
   user.init({
-    cnp: {type: DataTypes.INTEGER, primaryKey: true,},
+    cnp: {type: DataTypes.INTEGER, primaryKey: true},
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING
