@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       user.hasOne(models.profesor, {
 
       })
-      user.hasOne(models.student, {
-
-      })
+      // user.hasOne(models.student, {
+      //   foreignKey: 'cnp'
+      // })
     }
   }
   user.init({

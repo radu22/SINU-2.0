@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    toJSON() {
+      return { ...this.get(), id: undefined};
+    }
+
     static associate(models) {
       student.belongsTo(models.specializare, {
 
@@ -16,12 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       student.hasMany(models.rezultat_examen, {
 
       })
-      student.belongsTo(models.user, {
-
-      })
+      // student.belongsTo(models.user, {
+      //   foreignKey: 'cnp'
+      // })
     }
   }
   student.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     nume: DataTypes.STRING,
     prenume: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -29,9 +37,14 @@ module.exports = (sequelize, DataTypes) => {
     data_nasterii: DataTypes.DATE,
     grupa: DataTypes.INTEGER,
     limba: DataTypes.STRING,
-    nr_catalog: DataTypes.INTEGER
+    nr_catalog: DataTypes.INTEGER,
+    cnp: {
+      type: DataTypes.INTEGER,
+      unique:true,
+      allowNull: false
+    }
   }, {
-    sequelize,
+    sequelize: sequelize,
     modelName: 'student',
   });
   return student;
