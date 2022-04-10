@@ -20,9 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       student.hasMany(models.rezultat_examen, {
 
       })
-      // student.belongsTo(models.user, {
-      //   foreignKey: 'cnp'
-      // })
+
     }
   }
   student.init({

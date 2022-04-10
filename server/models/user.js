@@ -10,19 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      user.hasOne(models.profesor, {
 
-      })
-      // user.hasOne(models.student, {
-      //   foreignKey: 'cnp'
-      // })
     }
   }
   user.init({
     cnp: {type: DataTypes.INTEGER, primaryKey: true},
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    role: {type: DataTypes.STRING, validate: {isIn: [['STUDENT','PROFESOR','ADMIN']]}}
   }, {
     sequelize,
     modelName: 'user',

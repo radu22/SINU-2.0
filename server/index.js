@@ -5,6 +5,7 @@ const app = express()
 app.use(express.json())
 
 // routes
+app.use('/insertProf', require('./routes/profesorInsert'))
 app.use('/insert', require('./routes/studentInsert'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
