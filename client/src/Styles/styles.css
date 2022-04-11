@@ -1,11 +1,14 @@
 .rectangleLogin {
-    position: absolute;
-
     background: rgba(0, 0, 0, 0.47);
     box-shadow: inset -5px -5px 0px rgba(0, 0, 0, 0.2), inset 5px 5px 0px rgba(14, 14, 14, 0.2);
     border-radius: 20px;
 }
 
-.test {
-    color: red;
+
+.bg {
+    background-image: url("../media/background-image.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

@@ -1,12 +1,15 @@
 import './App.css';
 import Login from "./Components/Login";
+import BackgroundImagePage from "./Components/BackgroundImagePage";
 
 
 function App() {
   return (
-    <div>
-      <Login />
-    </div>
+      <div>
+        <BackgroundImagePage>
+            <Login />
+        </BackgroundImagePage>
+      </div>
   );
 }
 
