@@ -17,6 +17,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      refreshToken: {
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.STRING
       },

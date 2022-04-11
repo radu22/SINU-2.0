@@ -3,13 +3,11 @@ const {Op} = require("sequelize");
 
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 const handleLogin = async (req, res) => {
     const {username, pwd} = req.body;
-    //TODO:
-    // query all cnp from Student and Profesor
-    // check if req cnp is valid
-    // if not return 'Student unrecognized' status 400
-
     if (!username || !pwd) return res.status(400).json({'message': 'Username and password are required.'});
 
     const result = await user.findAll({
@@ -29,9 +27,24 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(pwd, result[0].dataValues.password);
     if(match){
         // create JWTs
-        res.json({'success': 'User '+ result[0].dataValues.username + ' is logged in!'});
+        const accessToken = jwt.sign(
+            {"username": result[0].dataValues.username},
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: '30m'}
+        );
+        const refreshToken = jwt.sign(
+            {"username": result[0].dataValues.username},
+            process.env.REFRESH_TOKEN_SECRET,
+            { expiresIn: '1d'}
+        );
+        //TODO: save refreshToken in DB
+        await result[0].update({
+            refreshToken: refreshToken
+        })
+        res.cookie('jwt', refreshToken, {httpOnly: true, sameSite:'None', maxAge: 24 * 60 * 60 * 1000});
+        res.json({ accessToken });
     } else{
-        res.sendStatus(401).json({'message': 'Wrong Password'});;
+        res.sendStatus(401).json({'message': 'Wrong Password'});
     }
 }
 

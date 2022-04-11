@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
+    refreshToken: DataTypes.STRING,
     role: {type: DataTypes.STRING, validate: {isIn: [['STUDENT','PROFESOR','ADMIN']]}}
   }, {
     sequelize,

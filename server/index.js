@@ -1,14 +1,24 @@
 const express = require('express')
 const { sequelize, student } = require('./models')
-
+const verifyJWT = require('./middleware/verifyJWT')
+const cookieParser = require('cookie-parser')
 const app = express()
 app.use(express.json())
 
+
+// middleweare for cookies
+app.use(cookieParser());
+
 // routes
-app.use('/insertProf', require('./routes/profesorInsert'))
-app.use('/insert', require('./routes/studentInsert'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
+app.use('/refresh', require('./routes/refresh'))
+app.use('/logout', require('./routes/logout'))
+
+app.use(verifyJWT);
+app.use('/insertProf', require('./routes/profesorInsert'))
+app.use('/insert', require('./routes/studentInsert'))
+
 
 app.get('/find', async (req, res) => {
     try {
