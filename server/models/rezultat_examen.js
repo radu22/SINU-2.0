@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   rezultat_examen.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     nota: DataTypes.INTEGER
   }, {
     sequelize,

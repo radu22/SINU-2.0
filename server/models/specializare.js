@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   specializare.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     nume_specializare: DataTypes.STRING,
     numar_ani: DataTypes.INTEGER
   }, {

@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   examen.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     data: DataTypes.DATE,
     forma_examinare: DataTypes.STRING
   }, {

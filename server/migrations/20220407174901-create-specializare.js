@@ -1,4 +1,5 @@
 'use strict';
+const {DataTypes} = require("sequelize/types");
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('specializares', {
@@ -7,6 +8,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      uuid: {
+        type: Sequelize.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
       nume_specializare: {
         type: Sequelize.STRING

@@ -16,12 +16,16 @@ module.exports = (sequelize, DataTypes) => {
       materie.belongsTo(models.profesor, {
 
       })
-      materie.hasOne(models.examen, {
+      materie.hasMany(models.examen, {
 
       })
     }
   }
   materie.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     nume: DataTypes.STRING,
     an: DataTypes.INTEGER,
     numar_credite: DataTypes.INTEGER

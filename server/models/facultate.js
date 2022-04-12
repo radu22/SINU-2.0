@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   facultate.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     nume_facultate: DataTypes.STRING,
     nume_decan: DataTypes.STRING
   }, {
