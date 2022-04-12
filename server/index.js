@@ -2,10 +2,20 @@ const express = require('express')
 const { sequelize, student } = require('./models')
 const verifyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
+const credentials = require('./middleware/credentials')
+const corsOptions = require('./config/corsOptions')
+const cors = require('cors')
+
 const app = express()
 app.use(express.json())
 
-
+//app.use(credentials);
+app.use((req,res, next)=>{
+    res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000");
+    res.setHeader('Access-Control-Allow-Headers',"*");
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
 // middleweare for cookies
 app.use(cookieParser());
 

@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const handleLogin = async (req, res) => {
+    console.log(req.body)
     const {username, pwd} = req.body;
     if (!username || !pwd) return res.status(400).json({'message': 'Username and password are required.'});
 
@@ -37,12 +38,13 @@ const handleLogin = async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d'}
         );
-        //TODO: save refreshToken in DB
+
+        // save refreshToken in DB
         await result[0].update({
             refreshToken: refreshToken
         })
         res.cookie('jwt', refreshToken, {httpOnly: true, sameSite:'None', maxAge: 24 * 60 * 60 * 1000});
-        res.json({ accessToken });
+        res.json({ "accessToken": accessToken, "role": result[0].dataValues.role });
     } else{
         res.sendStatus(401).json({'message': 'Wrong Password'});
     }

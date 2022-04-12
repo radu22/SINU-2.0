@@ -1,14 +1,14 @@
 import {useState, useEffect, useContext,} from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from "../api/axios";
-import {Form, Button, Container, Row, Col, Image} from 'react-bootstrap';
+import {Form, Container, Row, Col} from 'react-bootstrap';
 
 
 const LOGIN_URL = '/auth';
 
 const Login = () => {
     const {setAuth} = useContext(AuthContext);
-    const [user, setUser] = useState('');
+    const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -16,28 +16,29 @@ const Login = () => {
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd]);
+    }, [username, pwd]);
 
 
     /* Apeleaza API-ul cu datele din form */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user, pwd);
+        console.log(username, pwd);
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({user, pwd}),
+                JSON.stringify({username, pwd}),
                 {
                     headers: {'Content-Type': 'application/json'},
-                    withCredentials: true
+                    withCredentials: false
                 }
             );
 
+            console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({user, pwd, roles, accessToken})
+            const role = response?.data?.role;
+            setAuth({username, pwd, role, accessToken})
 
-            setUser('');
+            setUsername('');
             setPwd('');
             setSuccess(true);
 
@@ -60,7 +61,7 @@ const Login = () => {
                 </>
                 :
                 <>
-
+                    <p>{errMsg ? errMsg : ''}</p>
                     <Container>
 
                         <Row className="marginAndPaddingRectangle">
@@ -79,8 +80,8 @@ const Login = () => {
                                                     type="text"
                                                     placeholder="Username"
                                                     autoComplete="off"
-                                                    onChange={(e) => setUser(e.target.value)}
-                                                    value={user}/>
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    value={username}/>
                                             </Form.Group>
 
                                             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -105,7 +106,6 @@ const Login = () => {
                         <Row></Row>
                     </Container>
                 </>
-
         )
 
     )
