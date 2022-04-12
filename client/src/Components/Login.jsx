@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext,} from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from "../api/axios";
-import {Form, Button} from 'react-bootstrap';
+import {Form, Button, Container, Row, Col, Image} from 'react-bootstrap';
 
 
 const LOGIN_URL = '/auth';
@@ -60,36 +60,52 @@ const Login = () => {
                 </>
                 :
                 <>
-                    <p>{errMsg ? errMsg : ''}</p>
 
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicUsername">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Username"
-                                autoComplete="off"
-                                onChange={(e) => setUser(e.target.value)}
-                                value={user}/>
-                        </Form.Group>
+                    <Container>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                aria-autocomplete={'none'}
-                                autoComplete="off"
-                                onChange={(e) => setPwd(e.target.value)}
-                                value={pwd}/>
-                        </Form.Group>
+                        <Row className="marginAndPaddingRectangle">
+                            <p>{errMsg ? errMsg : ''}</p>
+                        </Row>
+                        <Row>
+                            <Col xl={7} lg={6} md={5} sm={4} xs={3} xxs={2} ></Col>
+                            <Col xl={3} lg={4} md={5} sm={6} xs={7} xxs={8} className="rectangleLogin">
+                                <Container>
+                                    <Row  className="marginAndPaddingUsername"> <img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
+                                    <Row >
+                                        <Form  onSubmit={handleSubmit} >
+                                            <Form.Group className="mb-3" controlId="formBasicUsername">
+                                                <Form.Label className="labelUsername">Username</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Username"
+                                                    autoComplete="off"
+                                                    onChange={(e) => setUser(e.target.value)}
+                                                    value={user}/>
+                                            </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-
+                                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                                <Form.Label className="labelPassword" >Password</Form.Label>
+                                                <Form.Control
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    aria-autocomplete={'none'}
+                                                    autoComplete="off"
+                                                    onChange={(e) => setPwd(e.target.value)}
+                                                    value={pwd}/>
+                                            </Form.Group>
+                                            <button className="buttonLogin"> Log In </button>
+                                            <button className="buttonSignin"> Sign in </button>
+                                            <button className="buttonForgotPassword"> Forgot Password </button>
+                                        </Form>
+                                    </Row>
+                                </Container>
+                            </Col>
+                            <Col xl={2} lg={2} md={2} sm={2} xs={6} xxs={2} ></Col>
+                        </Row>
+                        <Row></Row>
+                    </Container>
                 </>
+
         )
 
     )

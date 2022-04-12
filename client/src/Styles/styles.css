@@ -1,14 +1,140 @@
 .rectangleLogin {
+    height: 450px;
     background: rgba(0, 0, 0, 0.47);
     box-shadow: inset -5px -5px 0px rgba(0, 0, 0, 0.2), inset 5px 5px 0px rgba(14, 14, 14, 0.2);
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
+.marginAndPaddingRectangle{
+    margin: 140px;
+}
+
+.marginAndPaddingUsername{
+    margin-bottom: 40px;
+}
 
 .bg {
-    background-image: url("../media/background-image.jpg");
+    background-image: url("Fundal.PNG");
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.logoLoginRectangle{
+    width: 100%;
+    height: auto;
+}
+
+.labelUsername{
+    font-family: 'Impact';
+    font-style: normal;
+    font-weight:100;
+    font-size: 21px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.labelPassword{
+    font-family: 'Impact';
+    font-style: normal;
+    font-weight:100;
+    font-size: 21px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.buttonForgotPassword{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+
+    appearance: none;
+    /*background-color: #FFFAF0;
+    border: 1px solid rgb(209,213,219);*/
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #D1D5DB;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .70rem 1rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+
+}
+
+.buttonLogin{
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    justify-content: center;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 60px;
+
+}
+
+.buttonSignin{
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+    position: absolute;
+    margin: 90px;
+    margin-left: 58px;
 }
