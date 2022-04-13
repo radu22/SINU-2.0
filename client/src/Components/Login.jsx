@@ -61,9 +61,9 @@ const Login = () => {
                 </>
                 :
                 <>
-                    <p>{errMsg ? errMsg : ''}</p>
-                    <Container>
 
+                    <Container>
+                        <p>{errMsg ? errMsg : ''}</p>
                         <Row className="marginAndPaddingRectangle">
                             <p>{errMsg ? errMsg : ''}</p>
                         </Row>
