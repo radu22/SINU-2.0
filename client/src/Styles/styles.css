@@ -1,10 +1,17 @@
 .rectangleLogin {
-    height: 450px;
+    min-width: 200px;
+    min-height: 400px;
+    max-height: 600px;
+    max-width: 300px;
     background: rgba(0, 0, 0, 0.47);
-    box-shadow: inset -5px -5px 0px rgba(0, 0, 0, 0.2), inset 5px 5px 0px rgba(14, 14, 14, 0.2);
+    box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px rgba(14, 14, 14, 0.2);
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 55%;
+    right: 5%;
+    display: block;
 }
 
 .marginAndPaddingRectangle{
@@ -12,11 +19,31 @@
 }
 
 .marginAndPaddingUsername{
+    margin: 40px;
+}
+
+.positionContainer{
+    position: absolute;
+    top: 18%;
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+}
+
+/*.marginAndPaddingRectangle{
+    margin:100px;
+}*/
+
+.marginAndPaddingUsername{
+    margin-bottom: 40px;
+}
+
+marginAndPaddingRegister{
     margin-bottom: 40px;
 }
 
 .bg {
-    background-image: url("Fundal.PNG");
+    background-image: url("Funal.PNG");
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -27,16 +54,7 @@
     height: auto;
 }
 
-.labelUsername{
-    font-family: 'Impact';
-    font-style: normal;
-    font-weight:100;
-    font-size: 21px;
-    color: #000000;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.labelPassword{
+.labelLogin{
     font-family: 'Impact';
     font-style: normal;
     font-weight:100;
@@ -46,6 +64,21 @@
 }
 
 
+.labelRegister{
+    font-family: 'Impact';
+    font-style: normal;
+    font-weight:100;
+    font-size: 17px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+
+}
 
 .buttonForgotPassword{
     background-color: Transparent;
@@ -53,7 +86,9 @@
     border: none;
     cursor:pointer;
     overflow: hidden;
-
+    top: 50%;
+    -ms-transform: translateX(-50%);
+     /*transform: translateX(-50%);*/
     appearance: none;
     /*background-color: #FFFAF0;
     border: 1px solid rgb(209,213,219);*/
@@ -73,8 +108,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-
-
+    margin-bottom: 30px;
 }
 
 .buttonLogin{
@@ -105,10 +139,49 @@
     position: absolute;
     margin-top: 40px;
     margin-left: 60px;
+}
+
+.buttonNext{
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    justify-content: center;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+    position: absolute;
 
 }
 
 .buttonSignin{
+    /*margin-left: 60px*/
+    display: flex;
+}
+
+.centerButton{
+    text-align: center;
+    margin: auto;
+    display: grid;
+}
+
+.buttonSignin {
     appearance: none;
     background-color: #FAFBFC;
     border: 1px solid rgba(27, 31, 35, 0.15);

@@ -3,7 +3,6 @@ import AuthContext from "../Context/AuthProvider";
 import axios from "../api/axios";
 import {Form, Container, Row, Col} from 'react-bootstrap';
 
-
 const LOGIN_URL = '/auth';
 
 const Login = () => {
@@ -61,11 +60,9 @@ const Login = () => {
                 </>
                 :
                 <>
-                    <p>{errMsg ? errMsg : ''}</p>
                     <Container>
 
-                        <Row className="marginAndPaddingRectangle">
-                            <p>{errMsg ? errMsg : ''}</p>
+                        <Row><p>{errMsg ? errMsg : ''}</p>
                         </Row>
                         <Row>
                             <Col xl={7} lg={6} md={5} sm={4} xs={3} xxs={2} ></Col>
@@ -75,7 +72,7 @@ const Login = () => {
                                     <Row >
                                         <Form  onSubmit={handleSubmit} >
                                             <Form.Group className="mb-3" controlId="formBasicUsername">
-                                                <Form.Label className="labelUsername">Username</Form.Label>
+                                                <Form.Label className="labelLogin">Username</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Username"
@@ -85,7 +82,7 @@ const Login = () => {
                                             </Form.Group>
 
                                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                                <Form.Label className="labelPassword" >Password</Form.Label>
+                                                <Form.Label className="labelLogin" >Password</Form.Label>
                                                 <Form.Control
                                                     type="password"
                                                     placeholder="Password"
@@ -106,6 +103,7 @@ const Login = () => {
                         <Row></Row>
                     </Container>
                 </>
+
         )
 
     )
