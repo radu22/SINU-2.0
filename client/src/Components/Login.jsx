@@ -62,14 +62,11 @@ const Login = () => {
                 <>
                     <Container>
 
-                        <Row><p>{errMsg ? errMsg : ''}</p>
-                        </Row>
-                        <Row>
-                            <Col xl={7} lg={6} md={5} sm={4} xs={3} xxs={2} ></Col>
-                            <Col xl={3} lg={4} md={5} sm={6} xs={7} xxs={8} className="rectangleLogin">
+                        <Row><p>{errMsg ? errMsg : ''}</p></Row>
+                        <Row className="rectangleLogin" >
                                 <Container>
-                                    <Row  className="marginAndPaddingUsername"> <img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
-                                    <Row >
+                                    <Row> <img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
+                                    <Row className="positionLoginContainer">
                                         <Form  onSubmit={handleSubmit} >
                                             <Form.Group className="mb-3" controlId="formBasicUsername">
                                                 <Form.Label className="labelLogin">Username</Form.Label>
@@ -97,15 +94,10 @@ const Login = () => {
                                         </Form>
                                     </Row>
                                 </Container>
-                            </Col>
-                            <Col xl={2} lg={2} md={2} sm={2} xs={6} xxs={2} ></Col>
                         </Row>
-                        <Row></Row>
                     </Container>
                 </>
-
         )
-
     )
 }
 

@@ -62,10 +62,10 @@ const Register = () => {
                 <>
                     <Container>
                          <Row> <p>{errMsg ? errMsg : ''}</p> </Row>
-                        <Row className="rectangleLogin">
+                        <Row className="rectangleRegister">
                             <Container>
                                 <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
-                                    <Row className="positionContainer">
+                                    <Row className="positionRegisterContainer">
                                         <Form  onSubmit={handleSubmit} >
                                             <Form.Group className="mb-3" controlId="formBasicUsername">
                                                 <Form.Label  className="labelRegister">Cod numeric personal</Form.Label>
