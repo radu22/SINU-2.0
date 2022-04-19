@@ -69,7 +69,11 @@ const Register = () => {
                         <Row className="rectangleRegister">
                             <Container>
                                 <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
+<<<<<<< HEAD
                                     <Row className="positionContainerRegister">
+=======
+                                    <Row className="positionRegisterContainer">
+>>>>>>> 662d003f370d1711c0a1db798efe12d80b22d390
                                         <Form  onSubmit={handleSubmit} >
                                             <Form.Group className="mb-3" controlId="formBasicCNP">
                                                 <Form.Label  className="labelRegister">Cod numeric personal</Form.Label>
