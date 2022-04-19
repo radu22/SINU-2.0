@@ -1,44 +1,48 @@
 import {useState, useEffect, useContext,} from "react";
-import AuthContext from "../Context/AuthProvider";
 import axios from "../api/axios";
 import {Form, Button, Container, Row, Col, Image} from 'react-bootstrap';
 
 
-const LOGIN_URL = '/auth';
+const REGISTER_URL = '/register';
 
 const Register = () => {
-    const {setAuth} = useContext(AuthContext);
-    const [user, setUser] = useState('');
+    const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
+    const [pwdConfirm, setPwdConfirm] = useState('');
+    const [email, setEmail] = useState('');
+    const [cnp, setCnp] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd]);
+    }, [username, pwd,email,pwdConfirm,cnp]);
 
 
     /* Apeleaza API-ul cu datele din form */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user, pwd);
+        console.log(cnp,username, pwd,email,pwdConfirm);
 
+        if(pwd !== pwdConfirm) {
+            setErrMsg('Passwords did not match!');
+            return;
+        }
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({user, pwd}),
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({cnp, username, pwd, email}),
                 {
                     headers: {'Content-Type': 'application/json'},
-                    withCredentials: true
+                    withCredentials: false
                 }
             );
 
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({user, pwd, roles, accessToken})
-
-            setUser('');
+            setUsername('');
             setPwd('');
+            setEmail('');
+            setCnp('');
+            setPwdConfirm('');
             setSuccess(true);
 
         } catch (err) {
@@ -49,7 +53,7 @@ const Register = () => {
             } else if (err.response?.status === 401){
                 setErrMsg('Unauthorized');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('Register Failed');
             }
         }
     }
@@ -60,14 +64,14 @@ const Register = () => {
                 </>
                 :
                 <>
-                    <Container>
+                    <Container className="positionContainerRegister">
                          <Row> <p>{errMsg ? errMsg : ''}</p> </Row>
-                        <Row className="rectangleLogin">
+                        <Row className="rectangleRegister">
                             <Container>
                                 <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
-                                    <Row className="positionContainer">
+                                    <Row className="positionContainerRegister">
                                         <Form  onSubmit={handleSubmit} >
-                                            <Form.Group className="mb-3" controlId="formBasicUsername">
+                                            <Form.Group className="mb-3" controlId="formBasicCNP">
                                                 <Form.Label  className="labelRegister">Cod numeric personal</Form.Label>
                                                 <Form.Control
                                                     class="form-control form-control-sm"
@@ -75,8 +79,8 @@ const Register = () => {
                                                     maxlength="13"
                                                     placeholder="Cod numeric personal"
                                                     autoComplete="off"
-                                                    onChange={(e) => setUser(e.target.value)}
-                                                    value={user}/>
+                                                    onChange={(e) => setCnp(e.target.value)}
+                                                    value={cnp}/>
                                             </Form.Group>
 
                                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -85,9 +89,9 @@ const Register = () => {
                                                     class="form-control form-control-sm"
                                                     type="email"
                                                     placeholder="name@example.com"
-                                                    /*  autoComplete="off"
-                                                      onChange={(e) => setUser(e.target.value)}
-                                                      value={user}*/
+                                                      autoComplete="off"
+                                                      onChange={(e) => setEmail(e.target.value)}
+                                                      value={email}
                                                 />
                                             </Form.Group>
 
@@ -98,8 +102,8 @@ const Register = () => {
                                                     type="text"
                                                     placeholder="Username"
                                                     autoComplete="off"
-                                                    onChange={(e) => setUser(e.target.value)}
-                                                    value={user}/>
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    value={username}/>
                                             </Form.Group>
 
                                             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -122,8 +126,8 @@ const Register = () => {
                                                     placeholder="Confirm Password"
                                                     aria-autocomplete={'none'}
                                                     autoComplete="off"
-                                                    onChange={(e) => setPwd(e.target.value)}
-                                                    value={pwd}/>
+                                                    onChange={(e) => setPwdConfirm(e.target.value)}
+                                                    value={pwdConfirm}/>
                                             </Form.Group>
                                             <button className="buttonNext"> Next </button>
                                         </Form>
