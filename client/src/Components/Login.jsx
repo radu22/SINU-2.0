@@ -1,7 +1,8 @@
 import {useState, useEffect, useContext,} from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from "../api/axios";
-import {Form, Container, Row, Col} from 'react-bootstrap';
+import {Alert, Form, Row} from 'react-bootstrap';
+import {Link, Navigate} from "react-router-dom";
 
 
 const LOGIN_URL = '/auth';
@@ -12,6 +13,7 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const [validated, setValidated] = useState(false);
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
     useEffect(() => {
@@ -22,7 +24,11 @@ const Login = () => {
     /* Apeleaza API-ul cu datele din form */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username, pwd);
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        }
+        setValidated(true);
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -43,71 +49,85 @@ const Login = () => {
             setSuccess(true);
 
         } catch (err) {
-            if(!err?.response){
+            if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.status === 400){
-                setErrMsg('Missing Username or Password')
-            } else if (err.response?.status === 401){
-                setErrMsg('Unauthorized');
+            } else if (err.response?.status === 400) {
+                console.log(err.response)
+                setErrMsg(err.response.data?.message || 'Login failed')
+            } else if (err.response?.status === 401) {
+                setErrMsg(err.response.data?.message || 'Login failed')
             } else {
                 setErrMsg('Login Failed');
             }
         }
     }
+    const renderErrorMessage = () => {
+        return (
+            <Alert variant="danger">
+                <p>{errMsg}</p>
+            </Alert>
+        )
+    }
+
+    const renderLoginForm = () => {
+        return (
+            <Form onSubmit={handleSubmit} validated={validated}>
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Label className="labelLogin">Username</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="Username"
+                        autoComplete="off"
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}/>
+                </Form.Group>
+
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label className="labelLogin">Password</Form.Label>
+
+                    <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        aria-autocomplete={'none'}
+                        autoComplete="off"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}/>
+                </Form.Group>
+
+                <div className="textLink">
+                    <Link to="#" className="link"> Forgot Password ?</Link>
+                </div>
+                <div className="btnLogInPosition">
+                    <button className="buttonLogin">Log In</button>
+                </div>
+                <div className="textLink" style={{textAlign: "center"}}>
+                    Need an account? <Link to="/register" className="link"> Sign in</Link>
+                </div>
+                <div>
+                    {errMsg ? renderErrorMessage() : ''}
+                </div>
+
+            </Form>
+        )
+    }
 
     return (
-        (success ? <>
-                    <h1>LOGIN </h1>
-                </>
+        (success ? <Navigate to="/dashboard" />
                 :
                 <>
-
-                    <Container>
-                        <p>{errMsg ? errMsg : ''}</p>
-                        <Row className="marginAndPaddingRectangle">
-                            <p>{errMsg ? errMsg : ''}</p>
-                        </Row>
+                    <div className="position-absolute rectangleLogin p-4">
+                        <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
                         <Row>
-                            <Col xl={7} lg={6} md={5} sm={4} xs={3} xxs={2} ></Col>
-                            <Col xl={3} lg={4} md={5} sm={6} xs={7} xxs={8} className="rectangleLogin">
-                                <Container>
-                                    <Row  className="marginAndPaddingUsername"> <img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
-                                    <Row >
-                                        <Form  onSubmit={handleSubmit} >
-                                            <Form.Group className="mb-3" controlId="formBasicUsername">
-                                                <Form.Label className="labelUsername">Username</Form.Label>
-                                                <Form.Control
-                                                    type="text"
-                                                    placeholder="Username"
-                                                    autoComplete="off"
-                                                    onChange={(e) => setUsername(e.target.value)}
-                                                    value={username}/>
-                                            </Form.Group>
-
-                                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                                <Form.Label className="labelPassword" >Password</Form.Label>
-                                                <Form.Control
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    aria-autocomplete={'none'}
-                                                    autoComplete="off"
-                                                    onChange={(e) => setPwd(e.target.value)}
-                                                    value={pwd}/>
-                                            </Form.Group>
-                                            <button className="buttonLogin"> Log In </button>
-                                            <button className="buttonSignin"> Sign in </button>
-                                            <button className="buttonForgotPassword"> Forgot Password </button>
-                                        </Form>
-                                    </Row>
-                                </Container>
-                            </Col>
-                            <Col xl={2} lg={2} md={2} sm={2} xs={6} xxs={2} ></Col>
+                            {renderLoginForm()}
                         </Row>
-                        <Row></Row>
-                    </Container>
+                        <hr/>
+                    </div>
+
                 </>
         )
-
     )
 }
 

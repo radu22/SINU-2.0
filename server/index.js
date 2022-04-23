@@ -24,12 +24,12 @@ app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
 app.use('/refresh', require('./routes/refresh'))
 app.use('/logout', require('./routes/logout'))
+app.use('/insert', require('./routes/studentInsert'))
 
 
 app.use(verifyJWT);
 app.use('/delete', require('./routes/deleteTable'))
 app.use('/insertProf', require('./routes/profesorInsert'))
-app.use('/insert', require('./routes/studentInsert'))
 app.use('/insertFacultate', require('./routes/facultateInsert'))
 app.use('/insertSpecializare', require('./routes/specializareInsert'))
 app.use('/insertMaterie', require('./routes/materieInsert'))
