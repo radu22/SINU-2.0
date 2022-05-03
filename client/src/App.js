@@ -2,6 +2,8 @@ import './App.css';
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import BackgroundImagePage from "./Components/BackgroundImagePage";
+import Dashboard from "./Components/Dashboard";
+import Sidebar from "./Components/Sidebar";
 
 import {
     BrowserRouter as Router,
@@ -9,7 +11,6 @@ import {
     Route,
     Link, BrowserRouter
 } from "react-router-dom";
-import Dashboard from "./Components/Dashboard";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/login"  element={<Login />}/>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/dashboard"  element={<Dashboard />}/>
+                    <Route path="/sidebar"  element={<Sidebar />}/>
                 </Routes>
             </BrowserRouter>
         </BackgroundImagePage>

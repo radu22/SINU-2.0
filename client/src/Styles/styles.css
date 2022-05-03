@@ -56,16 +56,6 @@
     padding-left: 10%;
     transform: scale(1.1);
 }
-.UTCN {
-    position: relative;
-    margin-top: 2rem;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
-
-    background: url(utcluj_logo.png);
-}
 
 .navBar {
     position: absolute;
