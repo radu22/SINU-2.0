@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 
 const REGISTER_URL = '/register';
+const VERIFY_CNP_URL= '/verifyCnp';
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -25,7 +26,32 @@ const Register = () => {
 
     const handleCnpSubmit = async (e) => {
         e.preventDefault();
-        setIsCnpValid(true)
+
+        try {
+            const response = await axios.post(VERIFY_CNP_URL,
+                JSON.stringify({cnp}),
+                {
+                    headers: {'Content-Type': 'application/json'},
+                    withCredentials: false
+                }
+
+            );
+            setIsCnpValid(true)
+
+
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Cnp is required')
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unathorized');
+            } else {
+                setErrMsg('Register Failed');
+            }
+        }
+
+
     }
 
     /* Apeleaza API-ul cu datele din form */
