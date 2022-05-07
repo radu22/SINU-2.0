@@ -6,9 +6,11 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import {useState} from "react";
 import ProfileDetails from "./ProfileDetails";
+import logout from './DataSidebard';
 
 const USER_DETAILS_URL = '/getUserDetails';
 const PERSONAL_DETAILS_URL = '/getPersonalDetails';
+
 
 const Sidebar = () => {
     const [firstName, setFirstName] = useState();
@@ -54,6 +56,7 @@ const Sidebar = () => {
         }
 
     }
+
     const userDetails = getNameAndEmail();
     return (
 
@@ -71,6 +74,7 @@ const Sidebar = () => {
                                 id={window.location.pathname === "/dashboard" + val.link ? "active" : ""}
                                 // onClick={() =>{window.location.pathname = "/dashboard" + val.link}}>
                                 onClick={() => {
+                                    val.function();
                                     navigate("/dashboard" + val.link)
                                 }}>
                                 <div id="icon">{val.icon}</div>
@@ -79,10 +83,11 @@ const Sidebar = () => {
                         )
                     }
                 )
-                })}
+                }
             </ul>
         </div>
     );
 }
 
 export default Sidebar
+

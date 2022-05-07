@@ -5,6 +5,28 @@ import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import axios from "../api/axios";
+
+const LOGOUT_URL = '/logout';
+
+const logout = async () => {
+    try {
+        const response = await axios.get(LOGOUT_URL,
+            JSON.stringify({}),
+            {
+                headers: {'Content-Type': 'application/json'},
+                withCredentials: false
+            }
+        );
+    } catch (err) {
+        if (!err?.response) {
+            console.log(err.response)
+        }
+    }
+
+}
+
+export default logout;
 
 export const DataSidebar = [
     {
@@ -47,5 +69,6 @@ export const DataSidebar = [
             title: "Log out",
             icon: <LogoutOutlinedIcon />,
             link: "/logout",
+            function: logout,
         }
 ];
