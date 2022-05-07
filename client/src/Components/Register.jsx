@@ -1,13 +1,14 @@
 import {useState, useEffect} from "react";
 import axios from "../api/axios";
 import {Form, Row} from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const REGISTER_URL = '/register';
 const VERIFY_CNP_URL= '/verifyCnp';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     const [pwdConfirm, setPwdConfirm] = useState('');
@@ -83,6 +84,7 @@ const Register = () => {
             setEmail('');
             setCnp('');
             setPwdConfirm('');
+            navigate('/login');
             setSuccess(true);
 
         } catch (err) {

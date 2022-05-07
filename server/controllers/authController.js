@@ -23,7 +23,8 @@ const handleLogin = async (req, res) => {
 
 
 
-    if(!result) return res.sendStatus(401); // Unauthorized
+    // if(!result) return res.status(401); // Unauthorized
+
     // evaluate password
     const match = await bcrypt.compare(pwd, result[0].dataValues.password);
     if(match){
@@ -46,7 +47,7 @@ const handleLogin = async (req, res) => {
         res.cookie('jwt', refreshToken, {httpOnly: true, sameSite:'None', maxAge: 24 * 60 * 60 * 1000});
         res.json({ "accessToken": accessToken, "role": result[0].dataValues.role });
     } else{
-        res.sendStatus(401).json({'message': 'Wrong Password'});
+        res.status(401).json({'message': 'Username or password are not correct'});
     }
 }
 

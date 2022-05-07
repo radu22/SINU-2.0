@@ -26,7 +26,8 @@ app.use('/auth', require('./routes/auth'))
 app.use('/refresh', require('./routes/refresh'))
 app.use('/logout', require('./routes/logout'))
 app.use('/insert', require('./routes/studentInsert'))
-
+app.use('/getPersonalDetails', require('./routes/getPersonalDetals'))
+app.use('/getUserDetails', require('./routes/getUserDetails'))
 
 app.use(verifyJWT);
 app.use('/delete', require('./routes/deleteTable'))
@@ -36,6 +37,7 @@ app.use('/insertSpecializare', require('./routes/specializareInsert'))
 app.use('/insertMaterie', require('./routes/materieInsert'))
 app.use('/insertExamen', require('./routes/examenInsert'))
 app.use('/insertRezultatExamen', require('./routes/rezultatExamenInsert'))
+
 
 
 

@@ -11,23 +11,29 @@ import {
     Route,
     Link, BrowserRouter
 } from "react-router-dom";
-
+import {AuthProvider} from "./Context/AuthProvider";
+import RequireAuth from "./Components/RequireAuth";
 
 function App() {
-  return (
-      <div>
-        <BackgroundImagePage>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/login"  element={<Login />}/>
-                    <Route path="/register"  element={<Register />}/>
-                    <Route path="/dashboard"  element={<Dashboard />}/>
-                    <Route path="/sidebar"  element={<Sidebar />}/>
-                </Routes>
-            </BrowserRouter>
-        </BackgroundImagePage>
-      </div>
-  );
+    return (
+        <div>
+            <BackgroundImagePage>
+                <AuthProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/register" element={<Register/>}/>
+                            <Route element={<RequireAuth/>}>
+                                <Route path="/dashboard/*" element={<Dashboard/>}/>
+                                <Route path="/sidebar" element={<Sidebar/>}/>
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </AuthProvider>
+            </BackgroundImagePage>
+        </div>
+    )
+        ;
 }
 
 export default App;

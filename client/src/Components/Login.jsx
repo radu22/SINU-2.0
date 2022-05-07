@@ -1,18 +1,23 @@
-import {useState, useEffect, useContext,} from "react";
-import AuthContext from "../Context/AuthProvider";
+import {useState, useEffect} from "react";
 import axios from "../api/axios";
 import {Alert, Form, Row} from 'react-bootstrap';
-import {Link, Navigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const {setAuth} = useContext(AuthContext);
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/dashboard";
+
+
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
     const [validated, setValidated] = useState(false);
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
@@ -39,14 +44,14 @@ const Login = () => {
                 }
             );
 
-            console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const role = response?.data?.role;
             setAuth({username, pwd, role, accessToken})
 
             setUsername('');
             setPwd('');
-            setSuccess(true);
+
+            navigate(from, { replace: true });
 
         } catch (err) {
             if (!err?.response) {
@@ -115,8 +120,6 @@ const Login = () => {
     }
 
     return (
-        (success ? <Navigate to="/dashboard" />
-                :
                 <>
                     <div className="position-absolute rectangleLogin p-4">
                         <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
@@ -127,7 +130,6 @@ const Login = () => {
                     </div>
 
                 </>
-        )
     )
 }
 
