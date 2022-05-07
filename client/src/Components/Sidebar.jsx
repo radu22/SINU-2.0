@@ -44,7 +44,7 @@ const Sidebar = () => {
             setLastName(personalDetailsResponse.data.nume)
 
             // console.log(response.data[0])
-            console.log(personalDetailsResponse.data)
+            // console.log(personalDetailsResponse.data)
 
             return response?.data[0];
         } catch (err) {
