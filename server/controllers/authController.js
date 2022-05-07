@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const handleLogin = async (req, res) => {
     console.log(req.body)
+    const cookies = req.cookies;
     const {username, pwd} = req.body;
     if (!username || !pwd) return res.status(400).json({'message': 'Username and password are required.'});
 
@@ -39,6 +40,9 @@ const handleLogin = async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d'}
         );
+
+        if(cookies?.jwt) res.clearCookie('jwt', { httpOnly: true, sameSite: 'None'})
+
 
         // save refreshToken in DB
         await result[0].update({

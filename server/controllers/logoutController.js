@@ -2,17 +2,13 @@ const {user} = require("../models");
 const {Op} = require("sequelize");
 
 const handleLogout = async (req, res) => {
-    // On client, delete the accessToken
-
-    const cookies = req.cookies;
-    if (!cookies?.jwt) return res.sendStatus(204); // No content
-    const refreshToken = cookies.jwt;
-
+    const username = req.body.username;
+    if (!username) return res.sendStatus(204); // No content
     const foundUser = await user.findAll({
         where: {
-            refreshToken: {
-                [Op.eq]: refreshToken
-            },
+            username: {
+                [Op.eq]: username
+            }
         }
     });
     console.log(foundUser)
