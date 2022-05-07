@@ -6,12 +6,14 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
 
 const LOGOUT_URL = '/logout';
 
-const logout = async () => {
+const useHandleLogout = async () => {
+    const {auth, setAuth} = useAuth();
     try {
-        const response = await axios.get(LOGOUT_URL,
+        const response = await axios.post(LOGOUT_URL,
             JSON.stringify({}),
             {
                 headers: {'Content-Type': 'application/json'},
@@ -26,7 +28,7 @@ const logout = async () => {
 
 }
 
-export default logout;
+export default useHandleLogout;
 
 export const DataSidebar = [
     {
@@ -69,6 +71,6 @@ export const DataSidebar = [
             title: "Log out",
             icon: <LogoutOutlinedIcon />,
             link: "/logout",
-            function: logout,
+            function: useHandleLogout,
         }
 ];
