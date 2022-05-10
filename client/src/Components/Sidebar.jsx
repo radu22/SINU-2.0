@@ -64,7 +64,8 @@ const Sidebar = () => {
             <Navbar.Brand href="/dashboard">
                 <img className="UTCN" src={require('../Styles/utcluj_logo.png')}/>
             </Navbar.Brand>
-            {/*<ProfileDetails email={email} firstName={firstName} lastName={lastName}/>*/}
+            <ProfileDetails email={email} firstName={firstName} lastName={lastName}/>
+            <div className="line"></div>
             <ul className="SidebarList">
                 {DataSidebar.map((val, key) => {
                         return (

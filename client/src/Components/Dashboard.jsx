@@ -28,7 +28,7 @@ const Dashboard = () => {
         <Sidebar>
 
         </Sidebar>
-            <Button onClick={handleLogout}>Log Out</Button>
+
         </>
     )
 }
