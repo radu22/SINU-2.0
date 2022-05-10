@@ -45,11 +45,11 @@ const Register = () => {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('CNP is required')
+                setErrMsg('CNP is not recognized')
             } else if (err.response?.status === 401) {
                 setErrMsg('Unathorized');
             } else {
-                setErrMsg('CNP unrecognized');
+                setErrMsg('CNP already exist');
             }
         }
 

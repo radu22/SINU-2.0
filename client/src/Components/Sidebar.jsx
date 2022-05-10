@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import {useState} from "react";
+import ProfileDetails from "./ProfileDetails";
 
 const USER_DETAILS_URL = '/getUserDetails';
 const PERSONAL_DETAILS_URL = '/getPersonalDetails';
@@ -21,7 +22,7 @@ const Sidebar = () => {
     const handleLogout = async () => {
 
         try {
-            const response = await axios.post(LOGOUT_URL,
+            await axios.post(LOGOUT_URL,
                 JSON.stringify({username: auth.username}),
                 {
                     headers: {'Content-Type': 'application/json'},
@@ -68,14 +69,15 @@ const Sidebar = () => {
 
     }
 
-    const userDetails = getNameAndEmail();
+    getNameAndEmail();
     return (
 
         <div className="sidebar">
             <Navbar.Brand href="/dashboard">
-                <img className="UTCN" src={require('../Styles/utcluj_logo.png')}/>
+                <img className="UTCN" alt="" src={require('../Styles/utcluj_logo.png')}/>
             </Navbar.Brand>
-            {/*<ProfileDetails email={email} firstName={firstName} lastName={lastName}/>*/}
+            <ProfileDetails email={email} firstName={firstName} lastName={lastName}/>
+            <div className="line"/>
             <ul className="SidebarList">
                 {DataSidebar.map((val, key) => {
                         return (
@@ -102,4 +104,3 @@ const Sidebar = () => {
 }
 
 export default Sidebar
-

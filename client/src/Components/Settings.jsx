@@ -1,20 +1,11 @@
 import '../Styles/Settings.css'
 
 const Settings = () => {
-
-        return (
-            <>
-            <div>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-                <h1>dadssaasddasad</h1>
-            </div>
-            </>
-        )
+    return (
+        <>
+            <h1>dadssaasddasad</h1>
+        </>
+    )
 
 }
 export default Settings;
