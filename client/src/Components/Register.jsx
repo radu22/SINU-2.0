@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import axios from "../api/axios";
-import {Form, Row} from 'react-bootstrap';
+import {Alert, Form, Row} from 'react-bootstrap';
 import {Link, useNavigate} from "react-router-dom";
 
 
@@ -18,6 +18,7 @@ const Register = () => {
     const [success, setSuccess] = useState(false);
     const [isCnpValid, setIsCnpValid] = useState(false);
     const [validated, setValidated] = useState(false);
+
 
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
@@ -44,16 +45,17 @@ const Register = () => {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('Cnp is required')
+                setErrMsg('CNP is required')
             } else if (err.response?.status === 401) {
                 setErrMsg('Unathorized');
             } else {
-                setErrMsg('Register Failed');
+                setErrMsg('CNP unrecognized');
             }
         }
 
 
     }
+
 
     /* Apeleaza API-ul cu datele din form */
     const handleRegisterSubmit = async (e) => {
@@ -98,6 +100,14 @@ const Register = () => {
                 setErrMsg('Register Failed');
             }
         }
+    }
+
+    const renderErrorMessage = () => {
+        return (
+            <Alert variant="danger">
+                <p>{errMsg}</p>
+            </Alert>
+        )
     }
 
     const renderCnpForm = () => {
@@ -194,6 +204,9 @@ const Register = () => {
                         <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
                         <Row>
                             {isCnpValid ? renderRegisterForm() : renderCnpForm()}
+                        </Row>
+                        <Row className='paddingErrorMsg'>
+                            {errMsg ? renderErrorMessage() : ''}
                         </Row>
                     </div>
                 </>

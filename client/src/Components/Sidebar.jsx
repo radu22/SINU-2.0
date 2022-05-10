@@ -74,7 +74,7 @@ const Sidebar = () => {
                                 id={window.location.pathname === "/dashboard" + val.link ? "active" : ""}
                                 // onClick={() =>{window.location.pathname = "/dashboard" + val.link}}>
                                 onClick={() => {
-                                    val.function();
+                                    //val.function();
                                     navigate("/dashboard" + val.link)
                                 }}>
                                 <div id="icon">{val.icon}</div>

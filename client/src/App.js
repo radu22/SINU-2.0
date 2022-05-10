@@ -4,6 +4,7 @@ import Login from "./Components/Login";
 import BackgroundImagePage from "./Components/BackgroundImagePage";
 import Dashboard from "./Components/Dashboard";
 import Sidebar from "./Components/Sidebar";
+import Settings from "./Components/Settings";
 
 import {
     BrowserRouter as Router,
@@ -26,6 +27,7 @@ function App() {
                             <Route element={<RequireAuth/>}>
                                 <Route path="/dashboard/*" element={<Dashboard/>}/>
                                 <Route path="/sidebar" element={<Sidebar/>}/>
+                                <Route path="/setari" element={<Settings/>}/>
                             </Route>
                         </Routes>
                     </BrowserRouter>

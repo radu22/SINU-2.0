@@ -7,6 +7,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import renderSettings from './Settings'
 
 const LOGOUT_URL = '/logout';
 
@@ -65,6 +66,7 @@ export const DataSidebar = [
             title: "Setări",
             icon: <SettingsOutlinedIcon />,
             link: "/setari",
+            //function: ,
         },
 
         {

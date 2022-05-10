@@ -1,0 +1,12 @@
+.settingsBar {
+    min-width: 300px;
+    min-height: 500px;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.47);
+    box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px rgba(14, 14, 14, 0.2);
+    border-radius: 20px;
+    position: flex;
+    top: 3%;
+    left: 60%;
+    right: 10%;
+}
