@@ -5,6 +5,7 @@ import BackgroundImagePage from "./Components/BackgroundImagePage";
 import Dashboard from "./Components/Dashboard";
 import Sidebar from "./Components/Sidebar";
 import Settings from "./Components/Settings";
+import Grupe from "./Components/Grupe";
 
 import {
     BrowserRouter as Router,
@@ -24,6 +25,7 @@ function App() {
                         <Routes>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/register" element={<Register/>}/>
+                            <Route path="/grupe" element={<Grupe/>}/>
                             <Route element={<RequireAuth/>}>
                                 <Route path="/dashboard/*" element={<Dashboard/>}/>
                                 <Route path="/sidebar" element={<Sidebar/>}/>
