@@ -14,6 +14,9 @@ import {
 } from "react-router-dom";
 import {AuthProvider} from "./Context/AuthProvider";
 import RequireAuth from "./Components/RequireAuth";
+import PageLayout from "./Components/PageLayout";
+import Logout from "./Components/Logout";
+
 
 function App() {
     return (
@@ -25,9 +28,11 @@ function App() {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/register" element={<Register/>}/>
                             <Route element={<RequireAuth/>}>
-                                <Route path="/dashboard/*" element={<Dashboard/>}/>
-                                <Route path="/sidebar" element={<Sidebar/>}/>
-                                <Route path="/setari" element={<Settings/>}/>
+                                <Route path="/dashboard" element={<PageLayout/>}>
+                                    <Route path="*" element={<></>}/>
+                                    <Route path="sidebar" element={<Sidebar/>}/>
+                                    <Route path="setari" element={<Settings/>}/>
+                                </Route>
                             </Route>
                         </Routes>
                     </BrowserRouter>
