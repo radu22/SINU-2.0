@@ -46,4 +46,27 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
 }
 
+.marginTop{
+    margin-top: 10%;
+}
+.nameEmail{
+    margin-top: 15%;
+    margin-left: 5%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', Arial, sans-serif;
+    font-size: 100%;
+}
+.avatar{
 
+    height: 85%;
+    width: 100%;
+    border-radius: 50%;
+
+
+}
+
+strong {
+    color: white;
+}
+span {
+    color: white;
+}
