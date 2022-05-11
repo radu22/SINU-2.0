@@ -19,6 +19,7 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [validated, setValidated] = useState(false);
+    const [isAuth, setIsAuth] = useState(false);
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
     useEffect(() => {
@@ -46,7 +47,12 @@ const Login = () => {
             console.log(response);
             const accessToken = response?.data?.accessToken;
             const role = response?.data?.role;
-            setAuth({username, pwd, role, accessToken})
+            localStorage.setItem("token", "Bearer: "+ accessToken)
+            localStorage.setItem("username", username)
+            localStorage.setItem("role", role)
+            localStorage.setItem("isAuth", "true");
+
+            setAuth({isAuth: true,username, pwd, role, accessToken})
 
             setUsername('');
             setPwd('');

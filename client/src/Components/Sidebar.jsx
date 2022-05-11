@@ -20,7 +20,6 @@ const Sidebar = () => {
 
     const {auth, setAuth} = useAuth()
     const handleLogout = async () => {
-
         try {
             await axios.post(LOGOUT_URL,
                 JSON.stringify({username: auth.username}),
@@ -29,8 +28,11 @@ const Sidebar = () => {
                     withCredentials: false
                 }
             );
+            localStorage.removeItem("username")
+            localStorage.removeItem("token")
+            localStorage.removeItem("role")
+            localStorage.removeItem("isAuth")
             setAuth({})
-            // console.log(response)
         } catch (err) {
             console.log(err)
         }
@@ -47,7 +49,6 @@ const Sidebar = () => {
             );
             setEmail(response.data[0].email)
             setCnp(response.data[0].cnp)
-
 
             const personalDetailsResponse = await axios.post(PERSONAL_DETAILS_URL,
                 JSON.stringify({cnp: cnp}),
@@ -71,7 +72,6 @@ const Sidebar = () => {
 
     getNameAndEmail();
     return (
-
         <div className="sidebar">
             <Navbar.Brand href="/dashboard">
                 <img className="UTCN" alt="" src={require('../Styles/utcluj_logo.png')}/>
@@ -80,24 +80,22 @@ const Sidebar = () => {
             <div className="line"/>
             <ul className="SidebarList">
                 {DataSidebar.map((val, key) => {
-                        return (
-                            <li
-                                key={key}
-                                className="roow"
-                                id={window.location.pathname === "/dashboard" + val.link ? "active" : ""}
-                                onClick={() => {
-                                    if (val.title === "Log out")
-                                        handleLogout().then(r => console.log("Logout successful"))
-                                    else
-                                        navigate("/dashboard" + val.link)
-                                }}>
-                                <div id="icon">{val.icon}</div>
-                                <div id="title">{val.title}</div>
-                            </li>
-                        )
-                    }
-                )
-                }
+                    return (
+                        <li
+                            key={key}
+                            className="roow"
+                            id={window.location.pathname === "/dashboard" + val.link ? "active" : ""}
+                            onClick={() => {
+                                if (val.title === "Log out")
+                                    handleLogout().then(r => console.log("Logout successful"))
+                                else
+                                    navigate("/dashboard" + val.link)
+                            }}>
+                            <div id="icon">{val.icon}</div>
+                            <div id="title">{val.title}</div>
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     );
