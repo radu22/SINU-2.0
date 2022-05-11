@@ -4,6 +4,7 @@ import Login from "./Components/Login";
 import BackgroundImagePage from "./Components/BackgroundImagePage";
 import Settings from "./Components/Settings";
 import Grupe from "./Components/Grupe";
+import DropdownFacultati from'./Components/Grupe';
 
 import {
     Routes,

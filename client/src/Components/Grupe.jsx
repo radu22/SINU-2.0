@@ -1,11 +1,15 @@
 import {useState, useEffect} from "react";
 import axios from "../api/axios";
 
+
 const FACULTATI_URL = '/getFacultati';
 
- function DropdownFacultati() {
+const Grupe = () => {
      const [errMsg, setErrMsg] = useState('');
      const [listaFacultati, setListaFacultati] = useState([]);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const toggling = () => setIsOpen(!isOpen);
 
      const getAllFacultati = async () => {
          try {
@@ -18,8 +22,12 @@ const FACULTATI_URL = '/getFacultati';
              );
              console.log(response);
              let facultatiArray = response.data;
-             let ListaFacultati = facultatiArray.map(facultati => facultati.nume_facultati);
-             setListaFacultati(ListaFacultati);
+             console.log(facultatiArray);
+             let ListaFacultati = facultatiArray.map(({nume_facultate}) =>
+                 nume_facultate,
+         );
+             console.log(ListaFacultati);
+             setListaFacultati(arr => [...arr ,ListaFacultati]);
          } catch (err) {
              if (!err?.response) {
                  setErrMsg('No Server Response');
@@ -41,32 +49,49 @@ const FACULTATI_URL = '/getFacultati';
          return () => { ignore = true; }
      },[]);
 
+     console.log(listaFacultati);
+
     return (
-        <div href='/grupe'>
-            <div className='dropdown'>
-                <div className='control'>
-                    <div className='selected-value'>Select Facultate</div>
-                    <div className='arrow'></div>
-                </div>
-                <div className='options'>
-                    {
-                        listaFacultati.map(nume => <div className='option'>{nume.nume_facultate}</div>)
-                    }
-                    <div className='option'></div>
-                </div>
-            </div>
+        <div href='/grupe' style={{width: 200}}>
+    <div className="dropdown">
+            <div className='control'>
+            <div className='selected-value'>Select Facultate</div>
+        <div className='arrow'/>
         </div>
+        <div className='options'>
+            {
+                listaFacultati.map((val,key)  => <div key={key} className='option'>{val} < /div>)
+            }
+            <div className='option'></div>
+        </div>
+    </div>
+</div>
     )
 }
 
-const Grupe = () => {
-
-
-    return (
-        <div style={{ width: 200}}>
-            <DropdownFacultati ></DropdownFacultati>
-        </div>
-    )
-}
+// const Grupe = ({listaFacultati}) => {
+//
+//
+//     return (
+//         <div style={{ width: 200}}>
+//             <DropdownFacultati options={listaFacultati} prompt='Select Facultate'/>
+//         </div>
+//     )
+// }
 
 export default Grupe
+
+// <div href='/grupe' style={{width: 200}}>
+// <div className="dropdown">
+//     <div className='control'>
+//     <div className='selected-value'>Select Facultate</div>
+// <div className='arrow'/>
+// </div>
+// <div className='options'>
+//     {
+//         listaFacultati.map((val,key)  => <div key={key} className='option'>{val} < /div>)
+//     }
+//     <div className='option'></div>
+// </div>
+// </div>
+// </div>
