@@ -18,6 +18,7 @@ const Logout = () => {
                     withCredentials: false
                 }
             );
+
             setAuth({})
             // console.log(response)
         } catch (err) {
