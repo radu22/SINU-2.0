@@ -15,7 +15,10 @@ import RequireAuth from "./Components/RequireAuth";
 import PageLayout from "./Components/PageLayout";
 import NoPageFound from "./Components/NoPageFound";
 
-
+const roles = [
+    "PROFESOR",
+    "STUDENT"
+]
 function App() {
     return (
         <div>
@@ -27,11 +30,16 @@ function App() {
                             <Route path="/" element={<Login/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/register" element={<Register/>}/>
-                            <Route element={<RequireAuth/>}>
+                            <Route element={<RequireAuth allowedRoles={roles[1]}/>}>
                                 <Route path="/dashboard" element={<PageLayout/>}>
                                     <Route path="*" element={<NoPageFound/>}/>
-                                    <Route path="setari" element={<Settings/>}/>
+                                    <Route path="setari" elementdashboardAdmin={<Settings/>}/>
                                     <Route path="grupe" element={<Grupe/>}/>
+                                </Route>
+                            </Route>
+                            <Route element={<RequireAuth allowedRoles={roles[0]}/>}>
+                                <Route path="/dashboardAdmin" element={<PageLayout/>}>
+                                    <Route path="*" element={<NoPageFound/>}/>
                                 </Route>
                             </Route>
                         </Routes>

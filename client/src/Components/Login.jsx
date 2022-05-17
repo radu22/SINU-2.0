@@ -1,25 +1,22 @@
 import {useState, useEffect} from "react";
 import axios from "../api/axios";
 import {Alert, Form, Row} from 'react-bootstrap';
-import {Link, useNavigate, useLocation} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const { setAuth } = useAuth();
+    const {setAuth} = useAuth();
 
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/dashboard";
 
 
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [validated, setValidated] = useState(false);
-    const [isAuth, setIsAuth] = useState(false);
 
     /* Sterge erroarea in momentul in care user/pwd sunt modificate */
     useEffect(() => {
@@ -47,17 +44,19 @@ const Login = () => {
             console.log(response);
             const accessToken = response?.data?.accessToken;
             const role = response?.data?.role;
-            localStorage.setItem("token", "Bearer: "+ accessToken)
+            localStorage.setItem("token", "Bearer: " + accessToken)
             localStorage.setItem("username", username)
             localStorage.setItem("role", role)
             localStorage.setItem("isAuth", "true");
 
-            setAuth({isAuth: true,username, pwd, role, accessToken})
+            setAuth({isAuth: true, username, pwd, role, accessToken})
 
             setUsername('');
             setPwd('');
 
-            navigate(from, { replace: true });
+            let path
+            role === "STUDENT" ? path = "/dashboard" : path = "/dashboardAdmin"
+            navigate(path, {replace: true});
 
         } catch (err) {
             if (!err?.response) {
@@ -126,16 +125,16 @@ const Login = () => {
     }
 
     return (
-                <>
-                    <div className="position-absolute rectangleLogin p-4">
-                        <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
-                        <Row>
-                            {renderLoginForm()}
-                        </Row>
-                        <hr/>
-                    </div>
+        <>
+            <div className="position-absolute rectangleLogin p-4">
+                <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
+                <Row>
+                    {renderLoginForm()}
+                </Row>
+                <hr/>
+            </div>
 
-                </>
+        </>
     )
 }
 
