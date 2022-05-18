@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      student.belongsTo(models.specializare, {
-
-      })
-      student.hasMany(models.rezultat_examen, {
-
-      })
+      // student.belongsTo(models.specializare, {
+      //
+      // })
+      // student.hasMany(models.rezultat_examen, {
+      //
+      // })
 
     }
   }
@@ -33,9 +33,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     telefon: DataTypes.STRING,
     data_nasterii: DataTypes.DATE,
+    an: DataTypes.INTEGER,
     grupa: DataTypes.INTEGER,
     limba: DataTypes.STRING,
     nr_catalog: DataTypes.INTEGER,
+    specializareId: DataTypes.INTEGER,
     cnp: {
       type: DataTypes.INTEGER,
       unique:true,

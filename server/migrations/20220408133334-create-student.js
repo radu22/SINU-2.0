@@ -28,6 +28,9 @@ module.exports = {
       data_nasterii: {
         type: Sequelize.DATE
       },
+      an: {
+        type: Sequelize.INTEGER
+      },
       grupa: {
         type: Sequelize.INTEGER
       },
@@ -35,6 +38,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       nr_catalog: {
+        type: Sequelize.INTEGER
+      },
+      specializareId: {
         type: Sequelize.INTEGER
       },
       cnp: {

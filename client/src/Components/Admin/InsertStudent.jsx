@@ -12,6 +12,8 @@ const InsertStudent = () => {
     const [cnp, setCnp] = useState();
     const [telefon, setTelefon] = useState('');
     const [dataNasterii, setDataNasterii] = useState();
+    const [specializareId, setSpecializareId] = useState(0);
+    const [an, setAn] = useState(0);
     const [grupa, setGrupa] = useState(0);
     const [limba, setLimba] = useState('');
     const [nrCatalog, setNrCatalog] = useState();
@@ -43,6 +45,8 @@ const InsertStudent = () => {
                     "telefon": telefon,
                     "data_nasterii": dataNasterii,
                     "limba": limba,
+                    "specializareId": specializareId,
+                    "an": an,
                     "grupa": grupa,
                     "nr_catalog": nrCatalog
                 }),
@@ -156,6 +160,26 @@ const InsertStudent = () => {
                         autoComplete="off"
                         onChange={(e) => setLimba(e.target.value)}
                         value={limba}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicSpecializareId">
+                    <Form.Label className="label">Specializare</Form.Label>
+                    <Form.Control
+                        required
+                        type="number"
+                        placeholder="specializareId"
+                        autoComplete="off"
+                        onChange={(e) => setSpecializareId(e.target.value)}
+                        value={specializareId}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicAn">
+                    <Form.Label className="label">An</Form.Label>
+                    <Form.Control
+                        required
+                        type="number"
+                        placeholder="an"
+                        autoComplete="off"
+                        onChange={(e) => setAn(e.target.value)}
+                        value={an}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicGrupa">
                     <Form.Label className="label">Grupa</Form.Label>
