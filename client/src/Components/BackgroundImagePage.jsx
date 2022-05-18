@@ -4,10 +4,10 @@ import "../Styles/styles.css"
 
 const BackgroundImagePage = ({children}) => {
     return (
-        <div className="bg">
-            {children}
-        </div>
+            <div >
+                {children}
+            </div>
     );
 }
 
-export default BackgroundImagePage;
+// export default BackgroundImagePage;

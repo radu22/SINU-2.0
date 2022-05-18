@@ -35,7 +35,6 @@ app.use('/insertSpecializare', require('./routes/specializareInsert'))
 app.use('/insertMaterie', require('./routes/materieInsert'))
 app.use('/insertExamen', require('./routes/examenInsert'))
 app.use('/insertRezultatExamen', require('./routes/rezultatExamenInsert'))
-
 app.use(verifyJWT);
 
 
@@ -65,7 +64,7 @@ app.get('/find', async (req, res) => {
 
 app.listen({port: 3001}, async () => {
         console.log('Server running on port 3001')
-        await sequelize.sync({alter: true});
+        await sequelize.sync({});
         console.log('Database synced')
     }
 )

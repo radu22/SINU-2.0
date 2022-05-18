@@ -55,6 +55,11 @@ export const DataSidebarProfesor = [
         icon: <AccountCircleOutlinedIcon/>,
         link: "/insertStudent",
     },
+    {
+        title: "Adauga student",
+        icon: <AccountCircleOutlinedIcon/>,
+        link: "/insertStudent",
+    },
 
     {
         title: "Note",

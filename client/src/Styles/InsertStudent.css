@@ -1,0 +1,18 @@
+.insertStudentForm {
+    min-width: 300px;
+    min-height: 500px;
+    width: 80%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.47);
+    box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px rgba(14, 14, 14, 0.2);
+    border-radius: 20px;
+}
+.label {
+    color: #D1D5DB;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    padding: .30rem 0.1rem;
+    text-align: left;
+}

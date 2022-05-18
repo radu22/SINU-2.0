@@ -14,6 +14,7 @@ import {AuthProvider} from "./Context/AuthProvider";
 import RequireAuth from "./Components/RequireAuth";
 import PageLayout from "./Components/PageLayout";
 import NoPageFound from "./Components/NoPageFound";
+import InsertStudent from "./Components/Admin/InsertStudent";
 
 const roles = [
     "PROFESOR",
@@ -22,7 +23,6 @@ const roles = [
 function App() {
     return (
         <div>
-            <BackgroundImagePage>
                 <AuthProvider>
                     <BrowserRouter>
                         <Routes>
@@ -40,12 +40,12 @@ function App() {
                             <Route element={<RequireAuth allowedRoles={roles[0]}/>}>
                                 <Route path="/dashboardAdmin" element={<PageLayout/>}>
                                     <Route path="*" element={<NoPageFound/>}/>
+                                    <Route path="insertStudent" element={<InsertStudent/>}/>
                                 </Route>
                             </Route>
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>
-            </BackgroundImagePage>
         </div>
     )
         ;

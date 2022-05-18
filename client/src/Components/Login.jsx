@@ -126,6 +126,7 @@ const Login = () => {
 
     return (
         <>
+            <div style={{height:"100vh"}} >
             <div className="position-absolute rectangleLogin p-4">
                 <Row><img className="logoLoginRectangle" src={require('../Styles/Logo_90.png')}/></Row>
                 <Row>
@@ -133,7 +134,7 @@ const Login = () => {
                 </Row>
                 <hr/>
             </div>
-
+            </div>
         </>
     )
 }
