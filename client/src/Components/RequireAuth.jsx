@@ -1,18 +1,18 @@
-import { useLocation, Navigate, Outlet } from "react-router-dom";
+import {useLocation, Navigate, Outlet} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {useEffect} from "react";
 
-const RequireAuth = () => {
-    const { auth, setAuth } = useAuth();
+const RequireAuth = ({allowedRoles}) => {
+    const {setAuth} = useAuth();
     const location = useLocation();
 
     useEffect(() => {
         getLocalStorageAuth()
-    },[])
+    }, [])
 
     const getLocalStorageAuth = async () => {
         let isAuth = localStorage.getItem("isAuth");
-        if(isAuth === null) {
+        if (isAuth === null) {
             return false;
         }
         let username = localStorage.getItem("username")
@@ -22,9 +22,9 @@ const RequireAuth = () => {
         return true;
     }
     return (
-        localStorage.getItem("isAuth")
+        localStorage.getItem("role") === allowedRoles
             ? <Outlet/>
-            : <Navigate to={"/login"} state={{ from: location}} replace />
+            : <Navigate to={"/login"} state={{from: location}} replace/>
     )
 }
 

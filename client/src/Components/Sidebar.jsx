@@ -1,5 +1,5 @@
 import "../Styles/Sidebar.css"
-import {DataSidebar} from './DataSidebard'
+import {DataSidebarProfesor, DataSidebarStudent} from './DataSidebard'
 import {Navbar} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -33,6 +33,8 @@ const Sidebar = () => {
             localStorage.removeItem("role")
             localStorage.removeItem("isAuth")
             setAuth({})
+
+            navigate("/login", {replace: true});
         } catch (err) {
             console.log(err)
         }
@@ -69,17 +71,12 @@ const Sidebar = () => {
         }
 
     }
-
     getNameAndEmail();
-    return (
-        <div className="sidebar">
-            <Navbar.Brand href="/dashboard">
-                <img className="UTCN" alt="" src={require('../Styles/utcluj_logo.png')}/>
-            </Navbar.Brand>
-            <ProfileDetails email={email} firstName={firstName} lastName={lastName}/>
-            <div className="line"/>
+
+    const renderDataSidebarStudent = () => {
+        return (
             <ul className="SidebarList">
-                {DataSidebar.map((val, key) => {
+                {DataSidebarStudent.map((val, key) => {
                     return (
                         <li
                             key={key}
@@ -97,6 +94,43 @@ const Sidebar = () => {
                     )
                 })}
             </ul>
+        )
+    }
+    const renderDataSidebarProfesor = () => {
+        return (
+            <ul className="SidebarList">
+                {DataSidebarProfesor.map((val, key) => {
+                    return (
+                        <li
+                            key={key}
+                            className="roow"
+                            id={window.location.pathname === "/dashboardAdmin" + val.link ? "active" : ""}
+                            onClick={() => {
+                                if (val.title === "Log out")
+                                    handleLogout().then(r => console.log("Logout successful"))
+                                else
+                                    navigate("/dashboardAdmin" + val.link)
+                            }}>
+                            <div id="icon">{val.icon}</div>
+                            <div id="title">{val.title}</div>
+                        </li>
+                    )
+                })}
+            </ul>
+        )
+    }
+
+    return (
+        <div className="sidebar">
+            <Navbar.Brand href="/dashboard">
+                <img className="UTCN" alt="" src={require('../Styles/utcluj_logo.png')}/>
+            </Navbar.Brand>
+            <ProfileDetails email={email} firstName={firstName} lastName={lastName}/>
+            <div className="line"/>
+            {auth.role === "STUDENT"
+                ? renderDataSidebarStudent()
+                : renderDataSidebarProfesor()
+            }
         </div>
     );
 }

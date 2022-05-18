@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      specializare.belongsTo(models.facultate, {
-
-      })
-      specializare.hasMany(models.student, {
-
-      })
-      specializare.hasMany(models.materie, {
-
-      })
+      // specializare.belongsTo(models.facultate, {
+      //
+      // })
+      // specializare.hasMany(models.student, {
+      //
+      // })
+      // specializare.hasMany(models.materie, {
+      //
+      // })
     }
   }
   specializare.init({

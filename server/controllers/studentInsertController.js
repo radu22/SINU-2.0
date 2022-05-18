@@ -11,9 +11,12 @@ const insertNewStudent = async (req, res) => {
                 email: body.email,
                 telefon: body.telefon,
                 data_nasterii: new Date(body.data_nasterii),
+                an: body.an,
                 grupa: body.grupa,
                 limba: body.limba,
                 nr_catalog: body.nr_catalog,
+                specializareId: body.specializareId
+
             })
 
         return res.json(stud)

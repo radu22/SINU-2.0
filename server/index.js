@@ -1,18 +1,15 @@
 const express = require('express')
-const { sequelize, student } = require('./models')
+const {sequelize, student} = require('./models')
 const verifyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
-const credentials = require('./middleware/credentials')
-const corsOptions = require('./config/corsOptions')
-const cors = require('cors')
 
 const app = express()
 app.use(express.json())
 
 //app.use(credentials);
-app.use((req,res, next)=>{
-    res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000");
-    res.setHeader('Access-Control-Allow-Headers',"*");
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.setHeader('Access-Control-Allow-Headers', "*");
     res.header('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -30,7 +27,7 @@ app.use('/insert', require('./routes/studentInsert'))
 app.use('/getPersonalDetails', require('./routes/getPersonalDetals'))
 app.use('/getUserDetails', require('./routes/getUserDetails'))
 
-app.use(verifyJWT);
+
 app.use('/delete', require('./routes/deleteTable'))
 app.use('/insertProf', require('./routes/profesorInsert'))
 app.use('/insertFacultate', require('./routes/facultateInsert'))
@@ -38,8 +35,7 @@ app.use('/insertSpecializare', require('./routes/specializareInsert'))
 app.use('/insertMaterie', require('./routes/materieInsert'))
 app.use('/insertExamen', require('./routes/examenInsert'))
 app.use('/insertRezultatExamen', require('./routes/rezultatExamenInsert'))
-
-
+app.use(verifyJWT);
 
 
 app.get('/find', async (req, res) => {
@@ -67,9 +63,9 @@ app.get('/find', async (req, res) => {
 // })
 
 app.listen({port: 3001}, async () => {
-    console.log('Server running on port 3001')
-    await sequelize.sync({ alter: true });
-    console.log('Database synced')
+        console.log('Server running on port 3001')
+        await sequelize.sync({});
+        console.log('Database synced')
     }
 )
 

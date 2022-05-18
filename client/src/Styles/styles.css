@@ -1,3 +1,17 @@
+html, body {
+    margin:0;
+    height:100vh;
+    background-image: url("Funal.PNG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.content{
+    height:100vh;
+}
+
+
 .datePersonale {
     position: relative;
     width: 300px;
@@ -120,14 +134,6 @@
     top: 17%;
     left: 5%;
     right: 5%;
-}
-
-.bg {
-    background-image: url("Funal.PNG");
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .logoLoginRectangle{
     min-width: 10%;

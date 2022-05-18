@@ -6,46 +6,70 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-export const DataSidebar = [
+export const DataSidebarStudent = [
     {
         title: "Date Personale",
-        icon: <AccountCircleOutlinedIcon />,
+        icon: <AccountCircleOutlinedIcon/>,
         link: "/datePersonale",
     },
 
-        {
-            title: "Situația Școlară",
-            icon: <ArticleOutlinedIcon />,
-            link: "/situatiaScolara",
-        },
+    {
+        title: "Situația Școlară",
+        icon: <ArticleOutlinedIcon/>,
+        link: "/situatiaScolara",
+    },
 
-        {
-            title: "Grupe",
-            icon: <SchoolOutlinedIcon />,
-            link: "/grupe",
-        },
+    {
+        title: "Grupe",
+        icon: <SchoolOutlinedIcon/>,
+        link: "/grupe",
+    },
 
-        {
-            title: "Orar",
-            icon: <EventNoteOutlinedIcon />,
-            link: "/orar",
-        },
+    {
+        title: "Orar",
+        icon: <EventNoteOutlinedIcon/>,
+        link: "/orar",
+    },
 
-        {
-            title: "Materii",
-            icon: <MenuBookOutlinedIcon />,
-            link: "/materii",
-        },
+    {
+        title: "Materii",
+        icon: <MenuBookOutlinedIcon/>,
+        link: "/materii",
+    },
 
-        {
-            title: "Setări",
-            icon: <SettingsOutlinedIcon />,
-            link: "/setari",
-        },
+    {
+        title: "Setări",
+        icon: <SettingsOutlinedIcon/>,
+        link: "/setari",
+    },
 
-        {
-            title: "Log out",
-            icon: <LogoutOutlinedIcon />,
-            link: "/logout",
-        }
+    {
+        title: "Log out",
+        icon: <LogoutOutlinedIcon/>,
+        link: "/logout",
+    }
+];
+export const DataSidebarProfesor = [
+    {
+        title: "Adauga student",
+        icon: <AccountCircleOutlinedIcon/>,
+        link: "/insertStudent",
+    },
+    {
+        title: "Adauga student",
+        icon: <AccountCircleOutlinedIcon/>,
+        link: "/insertStudent",
+    },
+
+    {
+        title: "Note",
+        icon: <ArticleOutlinedIcon/>,
+        link: "/note",
+    },
+
+    {
+        title: "Log out",
+        icon: <LogoutOutlinedIcon/>,
+        link: "/logout",
+    }
 ];
