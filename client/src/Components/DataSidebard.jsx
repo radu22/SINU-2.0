@@ -56,9 +56,14 @@ export const DataSidebarProfesor = [
         link: "/insertStudent",
     },
     {
-        title: "Adauga student",
+        title: "Adauga materie",
         icon: <AccountCircleOutlinedIcon/>,
-        link: "/insertStudent",
+        link: "/insertMaterie",
+    },
+    {
+        title: "Programeaza examen",
+        icon: <AccountCircleOutlinedIcon/>,
+        link: "/scheduleExam",
     },
 
     {

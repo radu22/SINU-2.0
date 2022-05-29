@@ -1,11 +1,21 @@
 import {useState, useEffect} from "react";
 import axios from "../api/axios";
+import {Dropdown} from "react-bootstrap";
 
 const FACULTATI_URL = '/getFacultati';
 
  function DropdownFacultati() {
      const [errMsg, setErrMsg] = useState('');
+     const [shouldRenderSpecializari, setShouldRenderSpecializari] = useState(false);
      const [listaFacultati, setListaFacultati] = useState([]);
+     const [selectedFacultate, setSelectedFacultate] = useState("");
+
+     useEffect(() => {
+         let ignore = false;
+
+         if (!ignore)  getAllFacultati()
+         return () => { ignore = true; }
+     },[]);
 
      const getAllFacultati = async () => {
          try {
@@ -18,7 +28,7 @@ const FACULTATI_URL = '/getFacultati';
              );
              console.log(response);
              let facultatiArray = response.data;
-             let ListaFacultati = facultatiArray.map(facultati => facultati.nume_facultati);
+             let ListaFacultati = facultatiArray.map(facultati => facultati.nume_facultate);
              setListaFacultati(ListaFacultati);
          } catch (err) {
              if (!err?.response) {
@@ -34,27 +44,25 @@ const FACULTATI_URL = '/getFacultati';
          }
      }
 
-     useEffect(() => {
-         let ignore = false;
-
-         if (!ignore)  getAllFacultati()
-         return () => { ignore = true; }
-     },[]);
+     const renderSpecializari = () => {
+         return (
+             <div>
+                 Specializari pentru {selectedFacultate}
+             </div>
+         )
+     }
 
     return (
         <div href='/grupe'>
-            <div className='dropdown'>
-                <div className='control'>
-                    <div className='selected-value'>Select Facultate</div>
-                    <div className='arrow'></div>
-                </div>
-                <div className='options'>
-                    {
-                        listaFacultati.map(nume => <div className='option'>{nume.nume_facultate}</div>)
-                    }
-                    <div className='option'></div>
-                </div>
-            </div>
+            <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Facultati
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    {listaFacultati.map(facultate => <Dropdown.Item as="button" onClick={() => {setShouldRenderSpecializari(true); setSelectedFacultate(facultate)}}>{facultate}</Dropdown.Item>)}
+                </Dropdown.Menu>
+            </Dropdown>
+            {shouldRenderSpecializari ? renderSpecializari() : ""}
         </div>
     )
 }
@@ -64,7 +72,8 @@ const Grupe = () => {
 
     return (
         <div style={{ width: 200}}>
-            <DropdownFacultati ></DropdownFacultati>
+            <DropdownFacultati />
+
         </div>
     )
 }

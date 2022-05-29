@@ -15,6 +15,8 @@ import RequireAuth from "./Components/RequireAuth";
 import PageLayout from "./Components/PageLayout";
 import NoPageFound from "./Components/NoPageFound";
 import InsertStudent from "./Components/Admin/InsertStudent";
+import InsertMaterie from "./Components/Admin/InsertMaterie";
+import DatePersonale from "./Components/DatePersonale";
 
 const roles = [
     "PROFESOR",
@@ -35,12 +37,14 @@ function App() {
                                     <Route path="*" element={<NoPageFound/>}/>
                                     <Route path="setari" elementdashboardAdmin={<Settings/>}/>
                                     <Route path="grupe" element={<Grupe/>}/>
+                                    <Route path="datePersonale" element={<DatePersonale/>}/>
                                 </Route>
                             </Route>
                             <Route element={<RequireAuth allowedRoles={roles[0]}/>}>
                                 <Route path="/dashboardAdmin" element={<PageLayout/>}>
                                     <Route path="*" element={<NoPageFound/>}/>
                                     <Route path="insertStudent" element={<InsertStudent/>}/>
+                                    <Route path="insertMaterie" element={<InsertMaterie/>}/>
                                 </Route>
                             </Route>
                         </Routes>

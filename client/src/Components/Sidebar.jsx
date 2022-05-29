@@ -4,7 +4,7 @@ import {Navbar} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ProfileDetails from "./ProfileDetails";
 
 const USER_DETAILS_URL = '/getUserDetails';
@@ -17,6 +17,13 @@ const Sidebar = () => {
     const [email, setEmail] = useState();
     const [cnp, setCnp] = useState();
     let navigate = useNavigate();
+
+    useEffect(() => {
+        let ignore = false;
+
+        if (!ignore)  getNameAndEmail()
+        return () => { ignore = true; }
+    },[]);
 
     const {auth, setAuth} = useAuth()
     const handleLogout = async () => {
@@ -53,7 +60,7 @@ const Sidebar = () => {
             setCnp(response.data[0].cnp)
 
             const personalDetailsResponse = await axios.post(PERSONAL_DETAILS_URL,
-                JSON.stringify({cnp: cnp}),
+                JSON.stringify({cnp: response.data[0].cnp}),
                 {
                     headers: {'Content-Type': 'application/json'},
                     withCredentials: false
@@ -71,10 +78,10 @@ const Sidebar = () => {
         }
 
     }
-    getNameAndEmail();
 
     const renderDataSidebarStudent = () => {
         return (
+
             <ul className="SidebarList">
                 {DataSidebarStudent.map((val, key) => {
                     return (

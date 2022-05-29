@@ -30,14 +30,30 @@ const handleNewUser = async (req, res) => {
     if(result.length === 0) return res.status(400).json({'message': {role} + ' unrecognized'});
 
     // check for duplicate CNP in users
-    const duplicate = await user.findAll({
+    const duplicateCNP = await user.findAll({
         where: {
             cnp: {
                 [Op.eq]: cnp
             }
         }
     });
-    if(duplicate.length !== 0) return res.status(409).json({'message': 'Account already exists!'}); // conflict
+    const duplicateUserName = await user.findAll({
+        where: {
+            username: {
+                [Op.eq]: username
+            }
+        }
+    });
+    const duplicateEmail = await user.findAll({
+        where: {
+            email: {
+                [Op.eq]: email
+            }
+        }
+    });
+    if(duplicateCNP.length !== 0) return res.status(409).json({'message': 'Account already exists!'}); // conflict
+    if(duplicateUserName.length !== 0) return res.status(409).json({'message': 'Account already exists!'}); // conflict
+    if(duplicateEmail.length !== 0) return res.status(409).json({'message': 'Account already exists!'}); // conflict
 
     try{
         // encrypt pwd
